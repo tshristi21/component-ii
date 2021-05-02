@@ -4,6 +4,16 @@
 @endsection
 @section('contents')
 <h1 class="text-center">Product List</h1>
+@if($errors->any())
+<div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <ul>
+  	@foreach($errors->all() as $error)
+  	<li>{{ $error }}</li>
+  	@endforeach
+  </ul>
+</div>
+@endif
 <div class="row">
 	<div class="col-md-4 mt-4 mb-4">
 		<div class="card">

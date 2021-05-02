@@ -37,6 +37,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=>'required',
+            'fname'=>'required',
+            'sname'=>'required',
+            'price'=>'required',
+            'pages'=>'required'
+        ]);
         $result=JsonUtility::addNewProduct(public_path($this->file),  $request->producttype,  $request->title,  $request->fname,  $request->sname,  $request->price,  $request->pages);
         return  $result?
                 redirect()->back()->with(['success'=>'success']):
@@ -75,6 +82,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title'=>'required',
+            'fname'=>'required',
+            'sname'=>'required',
+            'price'=>'required',
+            'pages'=>'required'
+        ]);
         $result=JsonUtility::updateProductWithId(public_path($this->file),$id, $request->title,  $request->fname,  $request->sname,  $request->price,  $request->pages);
         return  $result?
                 redirect('/')->with(['success'=>'success']):
