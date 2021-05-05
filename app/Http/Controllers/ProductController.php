@@ -39,12 +39,12 @@ class ProductController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            'fname'=>'required',
+            'fname'=>'nullable',
             'sname'=>'required',
             'price'=>'required',
             'pages'=>'required'
         ]);
-        $result=JsonUtility::addNewProduct(public_path($this->file),  $request->producttype,  $request->title,  $request->fname,  $request->sname,  $request->price,  $request->pages);
+        $result=JsonUtility::addNewProduct(public_path($this->file),  $request->producttype,  $request->title,  $request->fname??'',  $request->sname,  $request->price,  $request->pages);
         return  $result?
                 redirect()->back()->with(['success'=>'success']):
                 redirect()->back()->with(['error'=>'error']);
@@ -84,12 +84,12 @@ class ProductController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            'fname'=>'required',
+            'fname'=>'nullable',
             'sname'=>'required',
             'price'=>'required',
             'pages'=>'required'
         ]);
-        $result=JsonUtility::updateProductWithId(public_path($this->file),$id, $request->title,  $request->fname,  $request->sname,  $request->price,  $request->pages);
+        $result=JsonUtility::updateProductWithId(public_path($this->file),$id, $request->title,  $request->fname??'',  $request->sname,  $request->price,  $request->pages);
         return  $result?
                 redirect('/')->with(['success'=>'success']):
                 redirect('/')->with(['error'=>'error']);
